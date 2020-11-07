@@ -1,0 +1,238 @@
+﻿<script type="text/javascript">
+    var useApplicationIIS = false;
+    var applicationISSPrefixModule = 'helpdesk';
+</script>
+<div class="container" style="margin-top: 150px;">
+    <br>
+
+    <h2>Tickets</h2>
+    <br><br>
+
+    <div class="mb-1">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#nuevoTicketModal">Nuevo</button>
+
+    </div>
+    <div class="shadow p-3 mb-5 bg-white rounded">
+        <div id="tablaTicket"></div>
+    </div>
+
+</div>
+
+<div class="modal fade bd-example-modal-lg" id="nuevoTicketModal" tabindex="-1" role="dialog" aria-labelledby="nuevoTicketModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title " id="nuevoTicketModalLabel">NUEVO TICKET</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="col-12 mx-auto ">
+
+                    <div class="card-body">
+                        <h5><b>Datos generales</b></h5>
+                        <hr />
+                        <div class="form-group row">
+                            <label class="control-label col-12 col-sm-4">Cliente</label>
+                            <div class="input-group col-12 col-sm-8">
+                                <div class="form-group col-12">
+                                    <select class="form-control" id="cmbClientes">
+                                        <option value="1">Cliente 1</option>
+                                        <option value="2">Cliente 2</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="control-label col-12 col-sm-4">Proyectos</label>
+                            <div class="input-group col-12 col-sm-8">
+                                <div class="form-group col-12">
+                                    <select class="form-control" id="cmbProyectos">
+                                        <option value="1">BP Turquesa</option>
+                                        <option value="2">BP Blanco</option>
+                                        <option value="3">LinkPro</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="control-label col-12 col-sm-4">Origen del LEAD</label>
+                            <div class="input-group col-12 col-sm-8">
+                                <div class="form-group col-12">
+                                    <select class="form-control" id="cmbProyectos">
+                                        <option value="1">Referencias</option>
+                                        <option value="2">Campaña publicitaria</option>
+                                        <option value="3">Internet</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="Detalle_Caracteristica" class="control-label col-12 col-sm-4">Detalles</label>
+                            <div class="input-group col-12 col-sm-8">
+                                <div class="form-group col-12">
+                                    <textarea class="form-control" id="txtDetallesTicket" rows="5" cols="3"></textarea>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade bd-example-modal-lg" id="nuevoTrakingModal" tabindex="-1" role="dialog" aria-labelledby="nuevoTrakingModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title " id="nuevoTrakingModalLabel">REGISTRO DE SEGUIMIENTO</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="col-12 mx-auto ">
+
+                    <div class="card-body">
+                        <h5><b>Datos generales</b></h5>
+                        <hr />
+                        <div class="form-group row">
+                            <label class="control-label col-12 col-sm-4">Fecha seguimento</label>
+                            <div class="input-group col-12 col-sm-8">
+                                <div class="form-group col-12">
+                                    <input class="form-control" type="datetime-local" id="fechaEvento">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="control-label col-12 col-sm-4">LEAD</label>
+                            <div class="input-group col-12 col-sm-8">
+                                <div class="form-group col-12">
+                                    <select class="form-control" id="cmbLead">
+                                        <option value="1">Lead 1</option>
+                                        <option value="2">Lead 2</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="control-label col-12 col-sm-4">Funnel</label>
+                            <div class="input-group col-12 col-sm-8">
+                                <div class="form-group col-12">
+                                    <select class="form-control" id="cmbFunel">
+                                        <option value="1">Funnel 1</option>
+                                        <option value="2">Funnel 2</option>
+                                        <option value="3">Funnel 3</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="control-label col-12 col-sm-4">Estado Pago</label>
+                            <div class="input-group col-12 col-sm-8">
+                                <div class="form-group col-12">
+                                    <select class="form-control" id="cmbPago">
+                                        <option value="1">Pendiente</option>
+                                        <option value="2">Adelante</option>
+                                        <option value="3">Pagado</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="control-label col-12 col-sm-4">Tipo Seguimiento</label>
+                            <div class="input-group col-12 col-sm-8">
+                                <div class="form-group col-12">
+                                    <select class="form-control" id="cmbSeguimiento">
+                                        <option value="1">Seguimiento sin recordatorio</option>
+                                        <option value="2">Seguimiento con recordatorio</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="control-label col-12 col-sm-4">Documentos</label>
+                            <div class="input-group col-12 col-sm-8">
+                                <div class="form-group col-12">
+                                    <select class="form-control" id="cmbDocumentos">
+                                        <option value="1">Sin documentos</option>
+                                        <option value="2">Con documentos</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="notificacion">
+                            <hr />
+                            <h5>Recordatorio</h5>
+                            <div class="form-group row">
+                                <label for="fechaRecordatorio" class="col-12 col-sm-4 col-form-label">Fecha</label>
+                                <div class="input-group col-12 col-sm-8">
+                                    <div class="form-group col-12">
+                                        <input class="form-control" type="datetime-local" id="fechaRecordatorio">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="Detalle_Caracteristica" class="control-label col-12 col-sm-4">Detalles</label>
+                                <div class="input-group col-12 col-sm-8">
+                                    <div class="form-group col-12">
+                                        <textarea class="form-control" id="txtDetallesTicket" rows="5" cols="3"></textarea>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="subirArchivo">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroupFileAddon01">Subir</span>
+                                </div>
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="inputGroupFile01"
+                                           aria-describedby="inputGroupFileAddon01">
+                                    <label class="custom-file-label" for="inputGroupFile01">Buscar archivo</label>
+                                </div>
+                            </div>
+                            <hr /><br />
+                        </div>
+
+                        <div class="form-group row">
+
+                            <label for="txtDetallesTracking" class="control-label col-12 col-sm-4">Detalles</label>
+                            <div class="input-group col-12 col-sm-8">
+                                <div class="form-group col-12">
+                                    <textarea class="form-control" id="txtDetallesTracking" rows="5" cols="3"></textarea>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+

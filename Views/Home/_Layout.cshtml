@@ -1,0 +1,130 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAC-BP</title>
+    <!--JQUERY-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="~/Js/Devexpress/js/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    <link href="~/Css/Index.css" rel="stylesheet" />
+    <script src="~/Js/Utils.js"></script>
+
+    <script src="~/Js/stapes.js"></script>
+    <script src="~/Js/BaseModule.js"></script>
+    <script src="~/Js/Bootbox/bootbox.js"></script>
+
+
+    <script src="~/JsViews/Clientes.js"></script>
+    <script src="~/JsViews/Contactos.js"></script>
+    <script src="~/JsViews/CaracteristicasClientes.js"></script>
+    <script src="~/JsViews/CaracteristicasProyectos.js"></script>
+  
+    <script src="~/JsViews/Proyectos.js"></script>
+    <script src="~/JsViews/Ticket.js"></script>
+
+
+    <script src="~/Js/Devexpress/js/jszip.js"></script>
+    <link href="~/Js/Devexpress/css/dx.common.css" rel="stylesheet" />
+    <link href="~/Js/Devexpress/css/dx.light.css" rel="stylesheet" />
+    <link href="~/Js/Devexpress/css/products.css" rel="stylesheet" />
+
+
+    <script src="~/Js/Devexpress/js/cldr.min.js"></script>
+    <script src="~/Js/Devexpress/js/cldr/event.min.js"></script>
+    <script src="~/Js/Devexpress/js/cldr/supplemental.min.js"></script>
+    <script src="~/Js/Devexpress/js/cldr/unresolved.min.js"></script>
+
+    <script src="~/Js/Devexpress/js/globalize.min.js"></script>
+    <script src="~/Js/Devexpress/js/globalize/currency.min.js"></script>
+    <script src="~/Js/Devexpress/js/globalize/date.min.js"></script>
+    <script src="~/Js/Devexpress/js/globalize/message.min.js"></script>
+    <script src="~/Js/Devexpress/js/globalize/number.min.js"></script>
+    <script src="~/Js/Devexpress/js/dx.viz-web.js"></script>
+    <script src="~/Js/Devexpress/js/knockout-latest.js"></script>
+
+    <script src="~/Js/Devexpress/js/DXUtils.js"></script>
+
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg fixed-top navbar-dark" style="background-color:#2f2f2f;">
+        <a class="navbar-brand col-2 col-sm-2" href="#"><img src="/Imagenes/logo.png" style="width: 80px; height: 40px;"> </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav col-sm-4 col-md-4">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#"><i class="fa fa-fw fa-home"></i> Inicio <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="lnkContactos" href="#"><i class="fa fa-fw fa-envelope"></i>Contactos</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-plus"></i> Opciones
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" id="lnkUsuarios" href="#"><i class="far fa-address-book"></i> Usuarios</a>
+                        <a class="dropdown-item" id="lnkClientes" href="#"><i class="far fa-address-book"></i> Clientes</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" id="lnkProyectos" href="#"><i class="far fa-chart-bar"></i> Proyectos</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" id="lnkTickets" href="#"><i class="far fa-chart-bar"></i> Ticket</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" id="lnkCaracteristicasClientes" href="#"><i class="far fa-chart-bar"></i>Características Clientes</a>
+                        <a class="dropdown-item" id="lnkCaracteristicasProyectos" href="#"><i class="far fa-chart-bar"></i>Características proyectos</a>
+                    </div>
+                </li>
+
+            </ul>
+            
+            <div class="dropdown col-12 col-sm-12 col-md-12" style="margin-left:50%;">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-sign-in-alt"></i> <span id="lbUsuario">Usuario</span>
+                </button>
+                <div class="dropdown-menu mt-2" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#">Opciones</a>
+                    <a id="logout" class="dropdown-item" href="#">Cerrar sesión</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div>
+        @RenderBody()
+    </div>
+
+    <footer class="page-footer font-small blue bg-dark">
+
+        <!-- Footer Links -->
+        <div class="container-fluid text-center text-white">
+
+            <!-- Grid row -->
+            <div class="row">
+
+                <!-- Grid column -->
+                <div class="container col-md-6 mt-md-3 mt-3">
+
+                    <!-- Content -->
+                    <h5 class="text-uppercase">BusinessPro</h5>
+                    <p>Todos los derechos reservados</p>
+                    <p>© 2020 Copyright:<a href="#">emiranda</a></p>
+                    
+                </div>
+              
+
+            </div>
+            
+
+        </div>
+       
+    </footer>
+</body>
+
+</html>

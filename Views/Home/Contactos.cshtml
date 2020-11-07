@@ -1,0 +1,85 @@
+﻿<div class="container" style="margin-top: 150px;">
+    <br>
+
+    <h2>Contactos</h2>
+    <br><br>
+
+
+    <div class="shadow p-3 mb-5 bg-white rounded">
+
+        <div id="tablaContactos"></div>
+    </div>
+
+
+</div>
+<div class="modal fade" id="nuevoUsuarioModal" tabindex="-1" role="dialog" aria-labelledby="nuevoUsuarioModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title " id="nuevoUsuarioModalLabel">NUEVO USUARIO</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="col-12 mx-auto ">
+
+
+
+                    <!--Datos personales-->
+                    <div class="card-body">
+                        <h5><b>Datos personales</b></h5>
+                        <hr />
+                        <div class="row form-group">
+                            <label for="Comp_Code" class="control-label col-12 col-sm-4">Identificación</label>
+                            <div class="input-group col-10 col-sm-7">
+                                <input type="text" id="Comp_Code" name="Comp_Code" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="User_Name" class="control-label col-12 col-sm-4">Nombre</label>
+                            <div class="input-group col-10 col-sm-7">
+                                <input type="text" class="form-control" id="User_Name" name="User_Name" maxlength="255" />
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="User_Phone" class="control-label col-12 col-sm-4">Teléfono</label>
+                            <div class="input-group col-10 col-sm-7">
+                                <input type="text" class="form-control" id="User_Phone" name="User_Phone"><br>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="User_Email" class="control-label col-12 col-sm-4">Correo</label>
+                            <div class="input-group col-10 col-sm-7">
+                                <input type="email" class="form-control" id="User_Email" name="User_Email">
+                                <br>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="control-label col-12 col-sm-4">Rol</label>
+                            <div class="input-group col-12 col-sm-8">
+                                <div class="form-group">
+                                    <select class="form-control" id="sel1">
+                                        <option>Usuario</option>
+                                        <option>Administrador</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>

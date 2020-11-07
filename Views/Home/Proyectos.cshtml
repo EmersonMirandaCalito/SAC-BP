@@ -1,0 +1,101 @@
+﻿<div class="container"  style="margin-top: 150px;">
+    <br>
+
+    <h2>Proyectos</h2>
+    <br><br>
+
+    <div class="mb-1">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#proyectosModal">Nuevo</button>
+
+    </div>
+    <div class="shadow p-3 mb-5 bg-white rounded">
+        <div id="tablaProyectos"></div>
+    </div>
+
+</div>
+
+<div class="modal fade bd-example-modal-xl" id="proyectosModal" tabindex="-1" role="dialog" aria-labelledby="proyectosModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title " id="proyectosModalLabel">NUEVO PROYECTO</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="col-12 mx-auto ">
+
+
+
+                    <!--Datos personales-->
+                    <div class="card-body">
+                        <h5><b>Datos del proyecto</b></h5>
+                        <hr />
+                        <div class="row form-group">
+                            <label for="Nom_Proyecto" class="control-label col-12 col-sm-4">Nombre del proyecto</label>
+                            <div class="input-group col-10 col-sm-7">
+                                <input type="text" id="Nom_Proyecto" name="Nom_Proyecto" class="form-control" />
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="control-label col-12 col-sm-4">Estado</label>
+                            <div class="input-group col-10 col-sm-7">
+                                <div class="form-group">
+                                    <select class="form-control" id="sel1">
+                                        <option>Activo</option>
+                                        <option>Inactivo</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="control-label col-12 col-sm-4">Vincular Características</label>
+                            <div class="input-group col-12 col-sm-2">
+                                <div class="form-group">
+                                    <select class="form-control" id="sel1">
+                                        <option>Característica 1</option>
+                                        <option>Característica 2</option>
+                                        <option>Característica 3</option>
+                                        <option>Característica 4</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-2">
+                                <button class="btn btn-primary">Agregar</button>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="User_Email" class="control-label col-12 col-sm-4">Características vinculadas</label>
+                            <div class="input-group col-10 col-sm-7">
+                                <select multiple class="form-control" id="sel2" name="sellist2">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class="form-group row">
+                            <label class="control-label col-12 col-sm-4"></label>
+                            <div class="input-group col-10 col-sm-7">
+                                <button class="btn btn-secondary">Eliminar</button>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
