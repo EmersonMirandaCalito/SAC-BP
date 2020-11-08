@@ -40,18 +40,41 @@ namespace SAC_BP.Controllers.Api
             try
             {
                 _user.Insert();
-                if(_user.Error == "")
-                {
-                   
-                    return itemToJson(_user);
-                }
-                else
-                {
-                    return _user.Error;
-                }
-                
+                return itemToJson(_user);
             }
             catch(Exception ex)
+            {
+                return ex.Message;
+            }
+
+        }
+
+        [Route("/User/updateUser")]
+        [HttpPost]
+        public string updateUser(User _user)
+        {
+            try
+            {
+                _user.Update();
+                return itemToJson(_user);
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+
+        }
+
+        [Route("/User/deleteUser")]
+        [HttpPost]
+        public string deleteUser(User _user)
+        {
+            try
+            {
+                _user.Delete();
+                return itemToJson(_user);
+            }
+            catch (Exception ex)
             {
                 return ex.Message;
             }
@@ -81,8 +104,6 @@ namespace SAC_BP.Controllers.Api
             }
 
         }
-
-
         public string tabletoJson(DataTable table)
         {
             JavaScriptSerializer jsSerializer = new JavaScriptSerializer();
@@ -99,8 +120,6 @@ namespace SAC_BP.Controllers.Api
             }
             return jsSerializer.Serialize(parentRow);
         }
-
-
         public string tabletoJson(User item, string tableName)
         {
             return JsonConvert.SerializeObject(item.Data.Tables[tableName]);
@@ -109,7 +128,7 @@ namespace SAC_BP.Controllers.Api
         {
             Response response = new Response();
             response.Error = _user.Error;
-            if(_user.Data.Tables[0].Rows.Count>0)
+            if(_user.Result)
             {
                 response.item = _user;
                 response.Success = true;

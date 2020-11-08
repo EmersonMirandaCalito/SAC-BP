@@ -56,7 +56,22 @@ namespace SAC_BP.Models
 
         public override string Delete()
         {
-            throw new NotImplementedException();
+            try
+            {
+                string query = "";
+                FuncionesGenerales.DA.OpenConnection();
+                query = FuncionesGenerales.PrepareStoredProcedure("SAC_Delete_User", Comp_Id, User_Id);
+                Error = FuncionesGenerales.DA.ExecuteQuery(query, false);
+                verificarError();
+                Result = true;
+                FuncionesGenerales.DA.CloseConnection();
+                return "";
+            }
+            catch (Exception ex)
+            {
+                Result = false;
+                return ex.Message;
+            }
         }
 
         public override string Insert()
@@ -74,7 +89,7 @@ namespace SAC_BP.Models
                 User_Id = value;
                 User_Password = FuncionesGenerales.DA.LockPassword(User_Password);
 
-                query = FuncionesGenerales.PrepareStoredProcedure("SAC_Insert_User",Comp_Id,User_Id,User_Name,User_Code,User_Email,User_Phone,Rol_Id,User_Login,User_Password,User_Status);
+                query = FuncionesGenerales.PrepareStoredProcedure("SAC_Insert_User",Comp_Id,User_Id,User_Code, User_Name, User_Email,User_Phone,Rol_Id,User_Login,User_Password,User_Status);
                 Error = FuncionesGenerales.DA.ExecuteQuery(query, false);
                 verificarError();
                 Result = true;
@@ -83,19 +98,37 @@ namespace SAC_BP.Models
             }
             catch(Exception ex)
             {
+                Result = false;
                 return ex.Message;
             }
         }
 
         public override string Load()
         {
-            string query = FuncionesGenerales.PrepareStoredProcedure("SAC_Load_User",Comp_Id,User_Id);
-            FuncionesGenerales.DA.OpenConnection();
-            Error = FuncionesGenerales.DA.GetDataSet(ObjetosGenerales.TABLA_USERS, ref Data, query);
-            verificarError();
-            FuncionesGenerales.DA.CloseConnection();
-            setDataUser(Data.Tables[ObjetosGenerales.TABLA_USERS]);
-            return "";
+            try
+            {
+                string query = FuncionesGenerales.PrepareStoredProcedure("SAC_Load_User", Comp_Id, User_Id);
+                FuncionesGenerales.DA.OpenConnection();
+                Error = FuncionesGenerales.DA.GetDataSet(ObjetosGenerales.TABLA_USERS, ref Data, query);
+                verificarError();
+                FuncionesGenerales.DA.CloseConnection();
+                if (Data.Tables[ObjetosGenerales.TABLA_USERS].Rows.Count > 0)
+                {
+                    Result = true;
+                }
+                else
+                {
+                    Result = false;
+                }
+                setDataUser(Data.Tables[ObjetosGenerales.TABLA_USERS]);
+                return "";
+            }
+            catch(Exception ex)
+            {
+                Result = false;
+                return ex.Message;
+            }
+            
         }
 
         public override string SelectTable()
@@ -110,7 +143,23 @@ namespace SAC_BP.Models
 
         public override string Update()
         {
-            throw new NotImplementedException();
+            try
+            {
+                string query = "";
+                FuncionesGenerales.DA.OpenConnection();
+                User_Password = FuncionesGenerales.DA.LockPassword(User_Password);
+                query = FuncionesGenerales.PrepareStoredProcedure("SAC_Update_User", Comp_Id, User_Id,User_Code,User_Name, User_Email, User_Phone, Rol_Id, User_Password, User_Status);
+                Error = FuncionesGenerales.DA.ExecuteQuery(query, false);
+                verificarError();
+                Result = true;
+                FuncionesGenerales.DA.CloseConnection();
+                return "";
+            }
+            catch (Exception ex)
+            {
+                Result = false;
+                return ex.Message;
+            }
         }
         public string Login()
         {

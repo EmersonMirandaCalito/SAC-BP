@@ -9,6 +9,15 @@
     defineVars();
     $("#btnIngresar").click(function (e) {
         e.preventDefault();
+        login();
+    });
+    $('#password').keydown(function (e) {
+        var keycode = (e.keyCode ? e.keyCode : e.which);
+        if (keycode == 13) {
+            login();
+        }
+    });
+    function login() {
         let user = $(ids.username).val();
         let pass = $(ids.password).val();
 
@@ -28,7 +37,7 @@
             User_Password: pass
         };
         getUser(data); 
-    });
+    }
     function getUser(data) {
         
         $.ajax({
