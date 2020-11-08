@@ -19,10 +19,18 @@ namespace SAC_BP.Controllers.Api
         [HttpPost]
         public string getUser(User _user)
         {
-            var user = new User();
-            user.Login(_user);
-            return tabletoJson(user, ObjetosGenerales.TABLA_USER);
+            _user.Login();
+            return itemToJson(_user);
             
+        }
+
+        [Route("/User/loadUser")]
+        [HttpPost]
+        public string loadUser(User _user)
+        {
+            _user.Load();
+            return itemToJson(_user);
+
         }
 
         [Route("/User/insertUser")]
@@ -101,8 +109,9 @@ namespace SAC_BP.Controllers.Api
         {
             Response response = new Response();
             response.Error = _user.Error;
-            if(_user.Error == "")
+            if(_user.Data.Tables[0].Rows.Count>0)
             {
+                response.item = _user;
                 response.Success = true;
             }
             else

@@ -24,8 +24,8 @@
             User_Email: '',
             User_Phone: '',
             Rol_Id: -1,
-            user: user,
-            Password: pass
+            User_Login: user,
+            User_Password: pass
         };
         getUser(data); 
     });
@@ -37,8 +37,8 @@
             type: 'POST',
             dataType: 'json',
             success: function (data) {
-                if (data != null) {
-                    sessionStorage.setItem('User', JSON.stringify(data[0]));
+                if (data.Success) {
+                    sessionStorage.setItem('User', JSON.stringify(data.item));
                     let url = "/Home/Index";
                     window.location.href = url;
                 }

@@ -1,5 +1,6 @@
 ﻿$(function () {
-    
+    var user = sessionStorage.getItem('User');
+    var userSession = JSON.parse(user);
     function defineVars() {
         this.ids = {
             lbUsuario: '#lbUsuario',
@@ -22,19 +23,17 @@
         window.location.href = url;
     }
     function checkSession() {
-        var user = sessionStorage.getItem('User');
-
         if (user != null) {
-            var userSession = JSON.parse(user);
+
             $(ids.lbUsuario).text(userSession.User_Name);
         } else {
             logout();
-        }   
+        }
     }
 
 
     
-    checkSession();
+   checkSession();
     
     
     

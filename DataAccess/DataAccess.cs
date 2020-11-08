@@ -98,18 +98,17 @@ namespace SAC_BP.DataAccess
             coneccion = ObjetosGenerales.conexionString;
         }
 
-        public string UnlockPassword(string key)
-        {
-            string resultado = Convert.ToString(Encoding.UTF8.GetChars(Convert.FromBase64String(key)));
-            resultado.Substring(0, resultado.Length);
-            return resultado;
-        }
+        
 
-        public string LockPassword(string key)
+        public string UnlockPassword(string base64EncodedData)
         {
-            string value = string.Concat(key);
-            byte[] byteValue = Encoding.UTF8.GetBytes(value);
-            return (Convert.ToBase64String(byteValue));
+            var base64EncodedBytes = System.Convert.FromBase64String(base64EncodedData);
+            return System.Text.Encoding.UTF8.GetString(base64EncodedBytes);
+        }
+        public string LockPassword(string plainText)
+        {
+            var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(plainText);
+            return System.Convert.ToBase64String(plainTextBytes);
         }
 
         public string ExecuteQuery(string query, bool isTransaction)

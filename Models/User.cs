@@ -22,8 +22,8 @@ namespace SAC_BP.Models
         public string User_Email { get; set; }
         public string User_Phone { get; set; }
         public int Rol_Id { get; set; }
-        public string user { get; set; }
-        public string Password { get; set; }
+        public string User_Login { get; set; }
+        public string User_Password { get; set; }
         public int User_Status { get; set; }
         public User()
         {
@@ -72,9 +72,9 @@ namespace SAC_BP.Models
                 query = "select isnull(max(User_Id),0)+1 from SAC_User with(nolock) where Comp_Id = " + Comp_Id;
                 FuncionesGenerales.DA.GetIntegerValue(query,ref value, false);
                 User_Id = value;
-                Password = FuncionesGenerales.DA.LockPassword(Password);
+                User_Password = FuncionesGenerales.DA.LockPassword(User_Password);
 
-                query = FuncionesGenerales.PrepareStoredProcedure("SAC_Insert_User",Comp_Id,User_Id,User_Name,User_Code,User_Email,User_Phone,Rol_Id,user,Password,User_Status);
+                query = FuncionesGenerales.PrepareStoredProcedure("SAC_Insert_User",Comp_Id,User_Id,User_Name,User_Code,User_Email,User_Phone,Rol_Id,User_Login,User_Password,User_Status);
                 Error = FuncionesGenerales.DA.ExecuteQuery(query, false);
                 verificarError();
                 Result = true;
@@ -89,7 +89,13 @@ namespace SAC_BP.Models
 
         public override string Load()
         {
-            throw new NotImplementedException();
+            string query = FuncionesGenerales.PrepareStoredProcedure("SAC_Load_User",Comp_Id,User_Id);
+            FuncionesGenerales.DA.OpenConnection();
+            Error = FuncionesGenerales.DA.GetDataSet(ObjetosGenerales.TABLA_USERS, ref Data, query);
+            verificarError();
+            FuncionesGenerales.DA.CloseConnection();
+            setDataUser(Data.Tables[ObjetosGenerales.TABLA_USERS]);
+            return "";
         }
 
         public override string SelectTable()
@@ -106,18 +112,18 @@ namespace SAC_BP.Models
         {
             throw new NotImplementedException();
         }
-        public string Login(User user)
+        public string Login()
         {
             try
             {
-                user.Password = FuncionesGenerales.DA.LockPassword(user.Password);
-                string query = FuncionesGenerales.PrepareStoredProcedure("Login", user.user, user.Password);
+                User_Password = FuncionesGenerales.DA.LockPassword(User_Password);
+                string query = FuncionesGenerales.PrepareStoredProcedure("Login", User_Login, User_Password);
                 FuncionesGenerales.DA.OpenConnection();
                 Error = FuncionesGenerales.DA.GetDataSet(ObjetosGenerales.TABLA_USER, ref Data, query);
                 verificarError();
                 Result = true;
                 FuncionesGenerales.DA.CloseConnection();
-                setDataUser();
+                setDataUser(Data.Tables[ObjetosGenerales.TABLA_USER]);
                 return "";
             }
             catch (Exception ex)
@@ -127,23 +133,33 @@ namespace SAC_BP.Models
                 return Error;
             }  
         }
-        public void setDataUser()
+        
+        public void setDataUser(DataTable tabla)
         {
-            DataTable tabla = Data.Tables[ObjetosGenerales.TABLA_USER];
-            if (tabla.Rows.Count > 0)
+            if (tabla != null)
             {
-                Comp_Id = int.Parse(tabla.Rows[0]["Comp_id"].ToString());
-                User_Id = int.Parse(tabla.Rows[0]["User_id"].ToString());
-                User_Code = tabla.Rows[0]["User_code"].ToString();
-                User_Name = tabla.Rows[0]["User_Name"].ToString();
-                User_Email = tabla.Rows[0]["User_Email"].ToString();
-                User_Phone = tabla.Rows[0]["User_Phone"].ToString();
-                Rol_Id = int.Parse(tabla.Rows[0]["Rol_Id"].ToString());
-                User_Status = 1;
+                if (tabla.Rows.Count > 0)
+                {
+                    Comp_Id = int.Parse(tabla.Rows[0]["Comp_id"].ToString());
+                    User_Id = int.Parse(tabla.Rows[0]["User_id"].ToString());
+                    User_Code = tabla.Rows[0]["User_code"].ToString();
+                    User_Name = tabla.Rows[0]["User_Name"].ToString();
+                    User_Email = tabla.Rows[0]["User_Email"].ToString();
+                    User_Phone = tabla.Rows[0]["User_Phone"].ToString();
+                    Rol_Id = int.Parse(tabla.Rows[0]["Rol_Id"].ToString());
+                    User_Password = FuncionesGenerales.DA.UnlockPassword(tabla.Rows[0]["User_Password"].ToString());
+                    User_Login = tabla.Rows[0]["User_Login"].ToString();
+                    if (tabla.Rows[0]["User_Status"].ToString()=="False")
+                    {
+                        User_Status = 0;
+                    }
+                    else
+                    {
+                        User_Status = 1;
+                    }
+                }
+
             }
-
-            
-
         }
         #endregion
 
