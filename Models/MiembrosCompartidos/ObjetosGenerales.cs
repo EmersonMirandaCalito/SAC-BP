@@ -25,5 +25,7 @@ namespace SAC_BP.Models.MiembrosCompartidos
 
         public const string TABLA_USER = "TABLA_USER";
         public const string TABLA_USERS = "TABLA_USERS";
+        public const string TABLA_FCLIENT = "TABLA_FCLIENT";
+        public const string TABLA_FCLIENTS = "TABLA_FCLIENTS";
     }
 }

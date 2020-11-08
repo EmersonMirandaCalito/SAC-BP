@@ -18,11 +18,15 @@ BEGIN
 			r.Rol_Name,
 			u.User_Login,
 			u.User_Password,
-			u.User_Status
+			case
+				when u.User_Status = 1 then 'Activo'
+				when u.User_Status = 0 then 'Inactivo'
+			end User_Status
 	from	SAC_User u with(nolock),
 			SAC_Rol r with(nolock)
 	where	u.Comp_Id = @Comp_Id
 	and		u.Rol_Id = r.Rol_Id	
+	order by User_Status asc
 END
 GO
 

@@ -20,6 +20,10 @@ namespace SAC_BP.Controllers.Api
         public string getUser(User _user)
         {
             _user.Login();
+            if(_user.User_Name == null)
+            {
+                _user.Result = false;
+            }
             return itemToJson(_user);
             
         }

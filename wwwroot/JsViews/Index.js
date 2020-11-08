@@ -4,13 +4,19 @@
     function defineVars() {
         this.ids = {
             lbUsuario: '#lbUsuario',
-            logout : '#logout'
+            logout: '#logout',
+            lnkCaracteristicasClientes: '#lnkCaracteristicasClientes'
         }
     }
     defineVars();
     $("#lnkUsuarios").click(function (e) {
         e.preventDefault();
         let url = "/Home/Usuarios";
+        window.location.href = url;
+    });
+    $(ids.lnkCaracteristicasClientes).click(function (e) {
+        e.preventDefault();
+        let url = "/Home/CaracteristicasClientes";
         window.location.href = url;
     });
     $(ids.logout).click(function (e) {
